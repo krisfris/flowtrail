@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "flowtrail"
+version = "0.1.0"
+description = ""
+authors = ["Kris <31852063+krisfris@users.noreply.github.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pyopengl = "^3.1.5"
+numpy = "^1.19.2"
+pillow = "^7.2.0"
+appdirs = "^1.4.4"
+pywavefront = "^1.3.2"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
