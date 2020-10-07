@@ -1,6 +1,5 @@
 import math
 import random
-import graphics.engine
 
 
 class noise:
@@ -135,15 +134,6 @@ for x, y, z, color in triangles:
 
 if __name__ == '__main__':
     from flowtrail.app import App
-    import flowtrail.glfw as glfw
     app = App()
     app.scene.add_triangles(actual_triangles)
-    app.scene.camera.birdseye()
-    app.input.key_down = lambda key, *_: key == glfw.GLFW_KEY_ESCAPE and app.quit()
     app.run()
-
-#world = graphics.engine.Engine3D(points, triangles, scale=scale, distance=distance, width=1400, height=750, title='Terrain')
-#
-#world.rotate('x', -30)
-#world.render()
-#world.screen.window.mainloop()

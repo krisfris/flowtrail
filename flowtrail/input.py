@@ -1,4 +1,5 @@
 import flowtrail.glfw as glfw
+import config
 
 
 class Input:
@@ -6,7 +7,8 @@ class Input:
         self.keys = set()
 
     def key_down(self, key, scancode, mods):
-        pass
+        if key == glfw.GLFW_KEY_ESCAPE:
+            config.app.quit()
 
     def key_up(self, key, scancode, mods):
         pass
