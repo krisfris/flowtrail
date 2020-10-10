@@ -10,6 +10,11 @@ setup(
         Extension(
             'flowtrail._transformations', ['flowtrail/transformations.c'],
             include_dirs=[numpy.get_include()]
-        )
+        ),
+        Extension('flowtrail._physics',
+                  sources=['flowtrail/physics.cpp'],
+                  libraries=['BulletDynamics', 'BulletCollision', 'LinearMath',
+                             'Bullet3Common', 'BulletSoftBody'],
+                  language='c++')
     ]
 )
