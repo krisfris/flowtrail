@@ -74,6 +74,14 @@ class Skybox:
 
         self.vertex_data = np.array(vertices, np.float32)
 
+        self.vao = glGenVertexArrays(1)
+        glBindVertexArray(self.vao)
+        # vertices
+        self.vertexBuffer = glGenBuffers(1)
+
+        # unbind VAO
+        glBindVertexArray(0)
+
     def load_texture(self):
         self.texture_id = glGenTextures(1)
         glActiveTexture(GL_TEXTURE0)
@@ -104,11 +112,11 @@ class Skybox:
         view_matrix[13] = 0.0
         view_matrix[14] = 0.0
 
+        # use shader
+        glUseProgram(self.program)
 
-        self.vao = glGenVertexArrays(1)
         glBindVertexArray(self.vao)
-        # vertices
-        self.vertexBuffer = glGenBuffers(1)
+
         glBindBuffer(GL_ARRAY_BUFFER, self.vertexBuffer)
         # set buffer data 
         glBufferData(GL_ARRAY_BUFFER, 4*len(self.vertex_data), self.vertex_data, 
@@ -118,13 +126,6 @@ class Skybox:
         # set buffer data pointer
         stride = 3 * 4
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, stride, None)
-
-        # unbind VAO
-        glBindVertexArray(0)
-
-        # use shader
-        glUseProgram(self.program)
-
         # set uniforms
 
         #pMatrix = glutils.perspective(app.window.fov, app.window.aspect, 0.1, 100.0)
@@ -136,7 +137,6 @@ class Skybox:
         glBindTexture(GL_TEXTURE_CUBE_MAP, self.texture_id)
 
         # bind VAO
-        glBindVertexArray(self.vao)
         # draw
         glDrawArrays(GL_TRIANGLES, 0, int(len(self.vertex_data) / 3))
 
